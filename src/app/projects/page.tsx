@@ -3,9 +3,8 @@ import Image from 'next/image'
 
 import { Card } from '@/components/Card'
 import { SimpleLayout } from '@/components/SimpleLayout'
-import logoCosmos from '@/images/logos/cosmos.svg'
-import logoHelioStream from '@/images/logos/helio-stream.svg'
-import logoOpenShuttle from '@/images/logos/open-shuttle.svg'
+
+import logoBooks from '@/images/logos/bookshelf.png'
 import logoBlueboard from '@/images/logos/blueboard.svg'
 import logoP2P from '@/images/logos/P2P.png'
 import logoWayfair from '@/images/logos/wayfair.png'
@@ -41,11 +40,11 @@ const projects = [
     logo: logoBbLounge,
   },
   {
-    name: 'OpenShuttle',
+    name: 'My Reads',
     description:
-      'The schematics for the first rocket I designed that successfully made it to orbit.',
-    link: { href: '#', label: 'github.com' },
-    logo: logoOpenShuttle,
+      `As the final project for the Udacity React Nanodegree, I built the My Reads app. It’s a bookshelf app that allows you to select and categorize books you have read, are currently reading, or want to read. It's a great example of how to leverage modern React and Redux.`,
+    link: { href: 'https://github.com/K0iram/myreads-app', label: 'github.com' },
+    logo: logoBooks,
   },
 ]
 
