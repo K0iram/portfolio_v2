@@ -3,40 +3,42 @@ import Image from 'next/image'
 
 import { Card } from '@/components/Card'
 import { SimpleLayout } from '@/components/SimpleLayout'
-import logoAnimaginary from '@/images/logos/animaginary.svg'
 import logoCosmos from '@/images/logos/cosmos.svg'
 import logoHelioStream from '@/images/logos/helio-stream.svg'
 import logoOpenShuttle from '@/images/logos/open-shuttle.svg'
-import logoPlanetaria from '@/images/logos/planetaria.svg'
+import logoBlueboard from '@/images/logos/blueboard.svg'
+import logoP2P from '@/images/logos/P2P.png'
+import logoWayfair from '@/images/logos/wayfair.png'
+import logoBbLounge from '@/images/logos/bb-lounge.png'
 
 const projects = [
   {
-    name: 'Planetaria',
+    name: 'Blueboard',
     description:
-      'Creating technology to empower civilians to explore space on their own terms.',
-    link: { href: 'http://planetaria.tech', label: 'planetaria.tech' },
-    logo: logoPlanetaria,
+      'As part of the product engineering team, I helped build the next generation of the Blueboard platform. We used a modern tech stack to build a scalable and reliable platform that powers the employee rewards and recognition programs for some of the world’s most innovative companies.',
+    link: { href: 'http://blueboard.com', label: 'blueboard.com' },
+    logo: logoBlueboard,
   },
   {
-    name: 'Animaginary',
+    name: 'Peer to Peer',
     description:
-      'High performance web animation library, hand-written in optimized WASM.',
-    link: { href: '#', label: 'github.com' },
-    logo: logoAnimaginary,
+      'As the lead engineer, I built the P2P platform from the ground up. It’s a peer-to-peer recognition platform that allows employees to recognize each other for their hard work and dedication. It’s a great way to build a positive company culture and keep employees engaged.',
+    link: { href: 'https://p2p.blueboard.com', label: 'p2p.blueboard.com' },
+    logo: logoP2P,
   },
   {
-    name: 'HelioStream',
+    name: 'Ideaboards',
     description:
-      'Real-time video streaming library, optimized for interstellar transmission.',
-    link: { href: '#', label: 'github.com' },
-    logo: logoHelioStream,
+      'As part of the Storefront team, I helped build the Ideaboards feature. It’s a way for customers to save their favorite products and share them with friends and family. It’s a great way to keep track of products you love and get feedback from others.',
+    link: { href: 'https://wayfair.com', label: 'wayfair.com' },
+    logo: logoWayfair,
   },
   {
-    name: 'cosmOS',
+    name: 'Barbershop Lounge',
     description:
-      'The operating system that powers our Planetaria space shuttles.',
-    link: { href: '#', label: 'github.com' },
-    logo: logoCosmos,
+      'As a freelance web developer, I built the Barbershop Lounge website. It’s a modern and stylish website that showcases the barbershop’s services and allows customers to book appointments online.',
+    link: { href: 'https://barbershoplounge.com', label: 'barbershoplounge.com' },
+    logo: logoBbLounge,
   },
   {
     name: 'OpenShuttle',
@@ -60,14 +62,14 @@ function LinkIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
 
 export const metadata: Metadata = {
   title: 'Projects',
-  description: 'Things I’ve made trying to put my dent in the universe.',
+  description: 'Things I’ve worked on trying to put my dent in the universe.',
 }
 
 export default function Projects() {
   return (
     <SimpleLayout
-      title="Things I’ve made trying to put my dent in the universe."
-      intro="I’ve worked on tons of little projects over the years but these are the ones that I’m most proud of. Many of them are open-source, so if you see something that piques your interest, check out the code and contribute if you have ideas for how it can be improved."
+      title="Things I’ve worked on trying to put my dent in the universe."
+      intro="I’ve worked on tons of projects over the years but these are the ones that I’m most proud of. They’re the ones that I think have made the biggest impact and have helped me grow the most as an engineer."
     >
       <ul
         role="list"
@@ -84,7 +86,7 @@ export default function Projects() {
               />
             </div>
             <h2 className="mt-6 text-base font-semibold text-zinc-800 dark:text-zinc-100">
-              <Card.Link href={project.link.href}>{project.name}</Card.Link>
+              <Card.Link href={project.link.href} target="_blank">{project.name}</Card.Link>
             </h2>
             <Card.Description>{project.description}</Card.Description>
             <p className="relative z-10 mt-6 flex text-sm font-medium text-zinc-400 transition group-hover:text-teal-500 dark:text-zinc-200">

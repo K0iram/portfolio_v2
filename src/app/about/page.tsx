@@ -75,19 +75,13 @@ export default function About() {
           </h1>
           <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas delectus nisi laudantium? 
-              Veniam est eligendi tempora, assumenda temporibus vel, repudiandae earum sit ducimus 
-              aliquam aperiam quod minima minus incidunt deleniti!
+              {`In my portfolio, you'll find a blend of tech innovation and a laid-back lifestyle that captures my essence. Life for me is about striking a balance—navigating the tech world with the same enthusiasm I share with my wife, Erin, and our three kids, Nixon, Bowie, and Ollie, in our homes in Boston and San Diego. Our journey, enriched by our kids' laughter and our dog Carmy's loyalty, is a testament to finding joy in both the hustle of the city and the calm of the coast.`}
             </p>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas delectus nisi laudantium? 
-              Veniam est eligendi tempora, assumenda temporibus vel, repudiandae earum sit ducimus 
-              aliquam aperiam quod minima minus incidunt deleniti!
+              {`Before diving into the tech scene, I lived a different kind of adventure in Mykonos, Greece, running the family's boutique hotel, Grecophilia. Those years were a crash course in hospitality and creating unforgettable experiences, all under the Mediterranean sun. It's where Erin and I's story began, blending personal growth with professional hustle. Fast forward to 2017, I pivoted to tech, embracing the coding world with open arms in Boston's North End, and I've been riding that wave ever since.`}
             </p>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas delectus nisi laudantium? 
-              Veniam est eligendi tempora, assumenda temporibus vel, repudiandae earum sit ducimus 
-              aliquam aperiam quod minima minus incidunt deleniti!
+              {`Off the clock, my passions are as diverse as my career path. From culinary experiments, thanks to my culinary school days, to embracing the outdoors—catching a wave, hitting the slopes, or enjoying a quiet day fishing. These activities keep me grounded and inspire my work in tech, adding a splash of creativity and innovation to every project. This mix of tech drive and a penchant for simple pleasures keeps me moving forward, always with an eye for the next adventure.`}
             </p>
           </div>
         </div>
