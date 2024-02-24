@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: {
     template: '%s - Mario Kavouras',
     default:
-      'Mario Kavouras - Software developer, chef, and super dude',
+      'Mario Kavouras - Software developer, chef, and super cool dude',
   },
   description:
     'I’m Mario, a software developer based in Boston, MA.',
