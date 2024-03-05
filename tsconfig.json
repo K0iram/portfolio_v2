@@ -24,5 +24,18 @@
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "theme": {
+    "extend": {
+      "keyframes": {
+        "blink": {
+            "0%, 100%": { "borderColor": "transparent" },
+            "50%": { "borderColor": "currentColor" },
+        },
+      },
+      "animation": {
+        "blink": "blink 0.7s infinite",
+      },
+    },
+  },
 }
