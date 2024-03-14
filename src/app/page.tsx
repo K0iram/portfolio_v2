@@ -184,6 +184,11 @@ function Role({ role }: { role: Role }) {
   )
 }
 
+const present = {
+  label: 'Present',
+  dateTime: new Date().getFullYear().toString(),
+}
+
 function Resume() {
   let resume: Array<Role> = [
     {
@@ -191,10 +196,7 @@ function Resume() {
       title: 'Software Engineer',
       logo: logoBlueboard,
       start: '2019',
-      end: {
-        label: 'Present',
-        dateTime: new Date().getFullYear().toString(),
-      },
+      end: '2024',
     },
     {
       company: 'MK Dev',
@@ -215,10 +217,21 @@ function Resume() {
 
   return (
     <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
-      <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-        <BriefcaseIcon className="h-6 w-6 flex-none" />
-        <span className="ml-3">Work</span>
+      <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100 items-center justify-between">
+        <div className='flex'>
+          <BriefcaseIcon className="h-6 w-6 flex-none" />
+          <span className="ml-3">Work</span>
+        </div>
+        <div>
+          Current Status: 
+          <span className="inline-flex items-center rounded-md bg-green-500/10 px-2 py-1 text-xs font-medium text-green-400 ring-1 ring-inset ring-green-500/20 ml-3">
+            Interviewing
+          </span>
+        </div>
       </h2>
+      <h3 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100 items-baseline">
+        
+      </h3>
       <ol className="mt-6 space-y-4">
         {resume.map((role, roleIndex) => (
           <Role key={roleIndex} role={role} />
