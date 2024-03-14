@@ -273,12 +273,12 @@ export default async function Home() {
             I’m Mario, a Software Engineer based in Boston, MA.
           </p>
           <div className="mt-6 flex gap-6">
-            <SocialLink
+            {/* <SocialLink
               href="https://instagram.com/koiram"
               target="_blank"
               aria-label="Follow on Instagram"
               icon={InstagramIcon}
-            />
+            /> */}
             <SocialLink
               href="https://github.com/k0iram"
               target="_blank"
