@@ -8,6 +8,12 @@ export default {
   darkMode: 'class',
   plugins: [typographyPlugin],
   theme: {
+    extend: {
+      colors: {
+        customOrange: '#FF9728',
+        customOrangeDark: '#E68620',
+      },
+    },
     fontSize: {
       xs: ['0.8125rem', { lineHeight: '1.5rem' }],
       sm: ['0.875rem', { lineHeight: '1.5rem' }],
