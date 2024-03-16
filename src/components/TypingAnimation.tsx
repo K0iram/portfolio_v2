@@ -2,14 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 
-const textVariations = [
-  "Front-end magician",
-  "Midnight snack guru",
-  "Pixel perfectionist",
-  "all around cool dude"
-];
 
-const TypingAnimation: React.FC = () => {
+const TypingAnimation: React.FC<{ variations: string[] }> = ({ variations }) => {
   const [text, setText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
   const [loopNum, setLoopNum] = useState(0);
@@ -25,17 +19,17 @@ const TypingAnimation: React.FC = () => {
       }, typingSpeed);
     } else {
       timer = setTimeout(() => {
-        setText(currentText => textVariations[loopNum].slice(0, currentText.length + 1));
+        setText(currentText => variations[loopNum].slice(0, currentText.length + 1));
         setTypingSpeed(150);
       }, typingSpeed);
     }
 
-    if (!isDeleting && text === textVariations[loopNum]) {
+    if (!isDeleting && text === variations[loopNum]) {
       setIsDeleting(true);
       setTypingSpeed(3000);
     } else if (isDeleting && text === '') {
       setIsDeleting(false);
-      setLoopNum(loopNum => (loopNum + 1) % textVariations.length);
+      setLoopNum(loopNum => (loopNum + 1) % variations.length);
       setTypingSpeed(500);
     }
 
