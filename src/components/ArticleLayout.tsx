@@ -8,6 +8,7 @@ import { Container } from '@/components/Container'
 import { Prose } from '@/components/Prose'
 import { type ArticleWithSlug } from '@/lib/articles'
 import { formatDate } from '@/lib/formatDate'
+import { SocialSharing } from './SocialSharing'
 
 function ArrowLeftIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
@@ -31,7 +32,8 @@ export function ArticleLayout({
 }) {
   let router = useRouter()
   let { previousPathname } = useContext(AppContext)
-
+  const articleUrl = window.location.href
+  const shareTitle = `Check out this article by ${article.author}:\n\n${article.title}`
   return (
     <Container className="mt-16 lg:mt-32">
       <div className="xl:relative">
@@ -63,6 +65,7 @@ export function ArticleLayout({
               {children}
             </Prose>
           </article>
+          <SocialSharing shareUrl={articleUrl} title={shareTitle} />
         </div>
       </div>
     </Container>
