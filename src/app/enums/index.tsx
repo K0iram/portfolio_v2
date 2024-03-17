@@ -6,8 +6,7 @@ export const homeTextVariations = [
 ];
 
 export const aboutTextVariations = [
-  "design the future.",
-  "day dream about opening a coffee shop.",
-  "scribble endless ideas on diner napkins.",
-  "craft the perfect playlist."
+  "plot to take over the world.",
+  "craft the perfect playlist.",
+  "build dope shit.",
 ];
