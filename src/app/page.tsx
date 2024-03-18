@@ -215,7 +215,14 @@ function Resume() {
     }
   ]
 
-  const statusTags = {
+  interface StatusTags {
+    [key: string]: {
+      color: string;
+      label: string;
+    };
+  }
+
+  const statusTags: StatusTags = {
     'LOOKING': {
       color: 'bg-green-500/10 text-green-400',
       label: 'Currently Interviewing',
@@ -230,7 +237,7 @@ function Resume() {
     },
   }
 
-  const currentStatus = process.env.CURRENT_STATUS
+  const currentStatus: string = process.env.CURRENT_STATUS || 'OPEN'
   
 
   return (

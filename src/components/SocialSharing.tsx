@@ -1,5 +1,4 @@
 import { EmailShare, LinkedinShare, RedditShare, TwitterShare } from "react-share-kit";
-import { Container } from "./Container";
 
 export function SocialSharing({
   title,
