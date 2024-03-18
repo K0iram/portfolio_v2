@@ -214,6 +214,23 @@ function Resume() {
       end: '2017',
     }
   ]
+
+  const statusTags = {
+    'LOOKING': {
+      color: 'bg-green-500/10 text-green-400',
+      label: 'Currently Interviewing',
+    },
+    'OPEN': {
+      color: 'bg-blue-500/10 text-blue-400',
+      label: 'Open to New Opportunities',
+    },
+    '!OPEN': {
+      color: 'bg-red-500/10 text-red-400',
+      label: 'Not Looking for Work',
+    },
+  }
+
+  const currentStatus = process.env.CURRENT_STATUS
   
 
   return (
@@ -224,9 +241,8 @@ function Resume() {
           <span className="ml-3">Work</span>
         </div>
         <div>
-          Current Status: 
-          <span className="inline-flex items-center rounded-md bg-green-500/10 px-2 py-1 text-xs font-medium text-green-400 ring-1 ring-inset ring-green-500/20 ml-3">
-            Interviewing
+          <span className={`${statusTags[currentStatus].color} inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset ring-green-500/20 ml-3`}>
+            {statusTags[currentStatus].label}
           </span>
         </div>
       </h2>
