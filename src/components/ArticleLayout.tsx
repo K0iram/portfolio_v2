@@ -1,6 +1,6 @@
 'use client'
 
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 
 import { AppContext } from '@/app/providers'
@@ -30,10 +30,15 @@ export function ArticleLayout({
   article: ArticleWithSlug
   children: React.ReactNode
 }) {
-  let router = useRouter()
+  const [articleUrl, setArticleUrl] = useState(''); // Default URL or base path
   let { previousPathname } = useContext(AppContext)
-  const articleUrl = window ? window.location.href : 'https://koiram.dev/articles/'
+  const router = useRouter()
   const shareTitle = `Check out this article by ${article.author}:\n\n${article.title}`
+
+  useEffect(() => {
+    setArticleUrl(window.location.href);
+  }, []);
+
   return (
     <Container className="mt-16 lg:mt-32">
       <div className="xl:relative">
