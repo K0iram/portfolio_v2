@@ -32,7 +32,7 @@ export function ArticleLayout({
 }) {
   let router = useRouter()
   let { previousPathname } = useContext(AppContext)
-  const articleUrl = window?.location.href || 'https://koiram.dev/articles/'
+  const articleUrl = window ? window.location.href : 'https://koiram.dev/articles/'
   const shareTitle = `Check out this article by ${article.author}:\n\n${article.title}`
   return (
     <Container className="mt-16 lg:mt-32">
