@@ -30,13 +30,16 @@ export function ArticleLayout({
   article: ArticleWithSlug
   children: React.ReactNode
 }) {
-  const [articleUrl, setArticleUrl] = useState(''); // Default URL or base path
+
+  const [articleUrl, setArticleUrl] = useState('');
+  const [isClientSide, setIsClientSide] = useState(false); // New state to track client-side rendering
   let { previousPathname } = useContext(AppContext)
   const router = useRouter()
   const shareTitle = `Check out this article by ${article.author}:\n\n${article.title}`
 
   useEffect(() => {
     setArticleUrl(window.location.href);
+    setIsClientSide(true); // Set to true once component has mounted
   }, []);
 
   return (
@@ -70,7 +73,7 @@ export function ArticleLayout({
               {children}
             </Prose>
           </article>
-          <SocialSharing shareUrl={articleUrl} title={shareTitle} />
+          {isClientSide && <SocialSharing shareUrl={articleUrl} title={shareTitle} />}
         </div>
       </div>
     </Container>
