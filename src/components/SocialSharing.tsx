@@ -1,4 +1,4 @@
-import { EmailShare, LinkedinShare, RedditShare, TwitterShare } from "react-share-kit";
+import { LinkedinShare, TwitterShare, RedditShare, EmailShare } from 'react-share-kit'
 
 export function SocialSharing({
   title,
