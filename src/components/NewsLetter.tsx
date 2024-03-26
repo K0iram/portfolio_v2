@@ -29,7 +29,7 @@ function MailIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
 const Newsletter = () => {
   const [email, setEmail] = useState('');
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Send a POST request to your API route
     const response = await fetch('/api/subscribe', {
