@@ -1,6 +1,5 @@
 import { NextResponse, NextRequest } from "next/server";
 import client from "@sendgrid/client";
-import { redirect } from "next/navigation";
 
 client.setApiKey(process.env.SENDGRID_API_KEY || ''); // Set your SendGrid API Key
 const listId = process.env.SENDGRID_LIST_ID || ''; // Set your SendGrid List ID
@@ -23,7 +22,7 @@ export async function POST(request: NextRequest) {
 
     // Explicitly declare the method as HttpMethod type
     const sgRequest = {
-      method: 'PUT',
+      method: 'PUT' as 'PUT', // Type assertion to satisfy TypeScript
       url: '/v3/marketing/contacts',
       body: data,
     };

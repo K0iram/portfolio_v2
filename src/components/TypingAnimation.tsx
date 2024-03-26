@@ -34,7 +34,7 @@ const TypingAnimation: React.FC<{ variations: string[] }> = ({ variations }) => 
     }
 
     return () => clearTimeout(timer);
-  }, [text, isDeleting, loopNum, typingSpeed]);
+  }, [text, isDeleting, loopNum, typingSpeed, variations]);
 
   return (
     <>
