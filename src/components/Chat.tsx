@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useJsonStream } from 'stream-hooks';
 import { z } from 'zod';
 
@@ -10,20 +10,35 @@ interface Data {
 
 const Chat: React.FC = () => {
   const [text, setText] = useState<string>('');
-  const [conversation, setConversation] = useState<Array<{ sender: 'user' | 'bot'; content: string }>>([]);
+  const [conversation, setConversation] = useState<Array<{ sender: 'user' | 'bot'; content: string }>>([
+    { sender: 'bot', content: `Hi! I am Mario's AI assistant. How can I help you today?` } // Initial bot message
+  ]);
   const [currentBotMessage, setCurrentBotMessage] = useState<string>('');
 
-  const { startStream, loading } = useJsonStream<Data>({
+  const { startStream, loading } = useJsonStream<z.ZodObject<any, any, any, { [x: string]: any; }, { [x: string]: any; }>>({
     schema: z.object({
-      content: z.string().nullable(), // Allowing null values
+      content: z.string().nullable(),
     }),
-    onReceive: (data) => {
+    onReceive: (data: Partial<Data>) => {
       if (data.content) {
         // Accumulate the bot's response
         setCurrentBotMessage(data.content);
       }
     },
   });
+
+  const messagesContainerRef = useRef<HTMLDivElement>(null); // Ref for the messages container
+
+  // Effect for scrolling to the bottom on conversation update
+  useEffect(() => {
+    if (messagesContainerRef.current) {
+      const scrollHeight = messagesContainerRef.current.scrollHeight;
+      const height = messagesContainerRef.current.clientHeight;
+      const maxScrollTop = scrollHeight - height;
+      messagesContainerRef.current.scrollTop = maxScrollTop > 0 ? maxScrollTop : 0;
+    }
+  }, [conversation]);
+
 
   // Effect to update the conversation when loading finishes
   useEffect(() => {
@@ -34,13 +49,13 @@ const Chat: React.FC = () => {
     }
   }, [loading, currentBotMessage]);
 
-  const submit = async (e) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     // Add the user's message to the conversation immediately
     setConversation((prev) => [...prev, { sender: 'user', content: text }]);
     setText('');
     try {
-      await startStream({
+      startStream({
         url: '/api/chat',
         method: 'POST',
         body: {
@@ -63,7 +78,7 @@ const Chat: React.FC = () => {
   return (
     <div>
       <form onSubmit={submit} className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
-        <div className="overflow-auto h-96 p-2 space-y-2 bg-white dark:bg-zinc-700/[0.15]">
+      <div className="overflow-auto h-96 p-2 space-y-2 bg-white dark:bg-zinc-700/[0.15]" ref={messagesContainerRef}>
           {conversation.map((message, index) => (
             <div key={index} className={`text-sm ${message.sender === 'user' ? 'text-right' : 'text-left'}`}>
               <span
@@ -71,7 +86,7 @@ const Chat: React.FC = () => {
                   message.sender === 'user' ? 'bg-blue-500 text-white' : 'bg-zinc-200 dark:bg-zinc-600'
                 }`}
               >
-                {message.content}
+                <p>{message.content}</p>
               </span>
             </div>
           ))}
@@ -95,7 +110,7 @@ const Chat: React.FC = () => {
           />
           <button
             type="submit"
-            disabled={loading} // Disable the button while loading
+            disabled={loading}
             className="ml-4 flex-none bg-blue-500 hover:bg-blue-600 text-white rounded-md px-4 py-2 text-sm disabled:bg-blue-300"
           >
             Send
