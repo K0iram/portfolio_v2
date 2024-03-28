@@ -24,6 +24,7 @@ import { formatDate } from '@/lib/formatDate'
 import TypingAnimation from '@/components/TypingAnimation'
 import { homeTextVariations } from './enums'
 import Newsletter from '@/components/NewsLetter'
+import Chat from '@/components/Chat'
 
 function BriefcaseIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
@@ -259,12 +260,6 @@ export default async function Home() {
             I’m Mario, a Software Engineer based in Boston, MA.
           </p>
           <div className="mt-6 flex gap-6">
-            {/* <SocialLink
-              href="https://instagram.com/koiram"
-              target="_blank"
-              aria-label="Follow on Instagram"
-              icon={InstagramIcon}
-            /> */}
             <SocialLink
               href="https://github.com/k0iram"
               target="_blank"
@@ -288,7 +283,14 @@ export default async function Home() {
       </Container>
       <Photos />
       <Container className="mt-24 md:mt-28">
-        <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
+        <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2 lg:gap-x-8 xl:gap-x-24">
+          <div className="lg:col-span-2">
+          <h2 className="text-2xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-3xl">
+            Ask Me Anything
+          </h2>
+          <h5 className='pb-4'>Have questions about me? Ask my AI bot anything you want to know!</h5>
+            <Chat />
+          </div>
           <div className="flex flex-col gap-16">
             <h2 className="text-2xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-3xl">
               Musings
@@ -305,4 +307,5 @@ export default async function Home() {
       </Container>
     </>
   )
+
 }
