@@ -61,6 +61,19 @@ function ArrowDownIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   )
 }
 
+function ChevronRightIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
+  return (
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
+      <path
+        d="M6.75 5.75 9.25 8l-2.5 2.25"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
 function Article({ article }: { article: ArticleWithSlug }) {
   return (
     <Card as="article">
@@ -246,7 +259,7 @@ function Photos() {
 }
 
 export default async function Home() {
-  let articles = (await getAllArticles()).slice(0, 4)
+  let articles = (await getAllArticles()).slice(0, 2)
 
   return (
     <>
@@ -296,6 +309,10 @@ export default async function Home() {
             {articles.map((article) => (
               <Article key={article.slug} article={article} />
             ))}
+            <Link href="/articles" passHref className="flex items-center text-sm font-medium text-teal-500">
+                View all articles
+                <ChevronRightIcon className="ml-1 h-4 w-4 stroke-current" />
+            </Link>
           </div>
           <div className="space-y-10 lg:pl-16 xl:pl-24">
             <Resume />
