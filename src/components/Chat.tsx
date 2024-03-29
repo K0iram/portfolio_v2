@@ -1,35 +1,42 @@
 'use client';
 
+import OpenAI from 'openai';
 import { useEffect, useRef, useState } from 'react';
 import { useJsonStream } from 'stream-hooks';
-import { z } from 'zod';
+import { schema } from '../app/api/chat/schema';
 
-interface Data {
+type Message = {
   content: string | null;
+  role: OpenAI.ChatCompletionMessageParam['role']
 }
 
 const Chat: React.FC = () => {
   const [text, setText] = useState<string>('');
-  const [conversation, setConversation] = useState<Array<{ sender: 'user' | 'bot'; content: string }>>([
-    { sender: 'bot', content: `Hi! I am Mario's AI assistant. How can I help you today?` } // Initial bot message
+  const [conversation, setConversation] = useState<Message[]>([
+    { role: 'assistant', content: `Hi! I am Mario's AI assistant. How can I help you today?` } // Initial bot message
   ]);
   const [currentBotMessage, setCurrentBotMessage] = useState<string>('');
+  const latestMessages = useRef<Message[]>(conversation);
 
-  const { startStream, loading } = useJsonStream<z.ZodObject<any, any, any, { [x: string]: any; }, { [x: string]: any; }>>({
-    schema: z.object({
-      content: z.string().nullable(),
-    }),
-    onReceive: (data: Partial<Data>) => {
+  const { startStream, loading } = useJsonStream({
+    schema,
+    onReceive: (data) => {
       if (data.content) {
-        // Accumulate the bot's response
-        setCurrentBotMessage(data.content);
+        const newMessages: Message[] = [...latestMessages.current, { role: 'assistant', content: data.content }];
+        setConversation(newMessages);
       }
     },
+    onEnd(data) {
+      if (data) {
+        const newMessages: Message[] = [...latestMessages.current, { role: 'assistant', content: data.content }];
+        setConversation(newMessages);
+        latestMessages.current = newMessages;
+      }
+    }
   });
 
   const messagesContainerRef = useRef<HTMLDivElement>(null); // Ref for the messages container
 
-  // Effect for scrolling to the bottom on conversation update
   useEffect(() => {
     if (messagesContainerRef.current) {
       const scrollHeight = messagesContainerRef.current.scrollHeight;
@@ -39,20 +46,11 @@ const Chat: React.FC = () => {
     }
   }, [conversation]);
 
-
-  // Effect to update the conversation when loading finishes
-  useEffect(() => {
-    if (!loading && currentBotMessage) {
-      // Add the accumulated bot message to the conversation
-      setConversation(prev => [...prev, { sender: 'bot', content: currentBotMessage }]);
-      setCurrentBotMessage(''); // Reset for the next message
-    }
-  }, [loading, currentBotMessage]);
-
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Add the user's message to the conversation immediately
-    setConversation((prev) => [...prev, { sender: 'user', content: text }]);
+    const newMessages: Message[] = [...conversation, { role: 'user', content: text }];
+    setConversation(newMessages);
+    latestMessages.current = newMessages;
     setText('');
     try {
       startStream({
@@ -60,10 +58,7 @@ const Chat: React.FC = () => {
         method: 'POST',
         body: {
           messages: [
-            {
-              content: text,
-              role: 'user',
-            },
+            ...newMessages,
           ],
         },
         headers: {
@@ -78,12 +73,12 @@ const Chat: React.FC = () => {
   return (
     <div>
       <form onSubmit={submit} className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
-      <div className="overflow-auto h-96 p-2 space-y-2 bg-white dark:bg-zinc-700/[0.15]" ref={messagesContainerRef}>
+      <div className="overflow-auto h-96 p-2 space-y-2" ref={messagesContainerRef}>
           {conversation.map((message, index) => (
-            <div key={index} className={`text-sm ${message.sender === 'user' ? 'text-right' : 'text-left'}`}>
+            <div key={index} className={`text-sm ${message.role === 'user' ? 'text-right' : 'text-left'}`}>
               <span
                 className={`inline-block rounded-lg px-3 py-1 ${
-                  message.sender === 'user' ? 'bg-blue-500 text-white' : 'bg-zinc-200 dark:bg-zinc-600'
+                  message.role === 'user' ? 'bg-blue-500 text-white' : 'bg-zinc-200 dark:bg-zinc-600'
                 }`}
               >
                 <p>{message.content}</p>
@@ -111,7 +106,7 @@ const Chat: React.FC = () => {
           <button
             type="submit"
             disabled={loading}
-            className="ml-4 flex-none bg-blue-500 hover:bg-blue-600 text-white rounded-md px-4 py-2 text-sm disabled:bg-blue-300"
+            className="ml-4 flex-none bg--500 hover:bg--600 text-white rounded-md px-4 py-2 text-sm disabled:bg--300"
           >
             Send
           </button>
