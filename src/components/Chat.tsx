@@ -4,6 +4,7 @@ import OpenAI from 'openai';
 import { useEffect, useRef, useState } from 'react';
 import { useJsonStream } from 'stream-hooks';
 import { schema } from '../app/api/chat/schema';
+import ReactMarkdown from 'react-markdown';
 
 type Message = {
   content: string | null;
@@ -32,6 +33,7 @@ const Chat: React.FC = () => {
         setConversation(newMessages);
         latestMessages.current = newMessages;
       }
+      console.log(JSON.stringify(data, null, 2));
     }
   });
 
@@ -70,31 +72,54 @@ const Chat: React.FC = () => {
     }
   };
 
+  interface MdxContentProps {
+    content: string;
+    className?: string;
+  }
+
+  const MdxContent = ({ content, className }: MdxContentProps) => {
+    return (
+      <ReactMarkdown
+        className={className}
+        components={{
+          a: ({ ...props }) => {
+            return <a {...props} className="text-sky-8 hover:text-sky-9 underline" />
+          },
+          img: ({ src }) => {
+            return (
+              <div className="">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={`/api/images/fallback?imageUri=${src}`}
+                  className="max-w-full rounded-lg shadow-md md:max-w-sm"
+                  alt="message image"
+                />
+              </div>
+            )
+          }
+        }}
+      >
+        {content}
+      </ReactMarkdown>
+    )
+  }
+
   return (
     <div>
       <form onSubmit={submit} className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
-      <div className="overflow-auto h-96 p-2 space-y-2" ref={messagesContainerRef}>
-          {conversation.map((message, index) => (
-            <div key={index} className={`text-sm ${message.role === 'user' ? 'text-right' : 'text-left'}`}>
-              <span
-                className={`inline-block rounded-lg px-3 py-1 ${
-                  message.role === 'user' ? 'bg-blue-500 text-white' : 'bg-zinc-200 dark:bg-zinc-600'
-                }`}
-              >
-                <p>{message.content}</p>
-              </span>
-            </div>
-          ))}
-          {loading && (
-            <div className="flex justify-start">
-              <div className="flex animate-pulse">
-                <span className="block bg-gray-500 h-2 w-2 rounded-full mr-1"></span>
-                <span className="block bg-gray-500 h-2 w-2 rounded-full mr-1"></span>
-                <span className="block bg-gray-500 h-2 w-2 rounded-full"></span>
+            <div className="overflow-auto h-96 p-2 space-y-2" ref={messagesContainerRef}>
+                {conversation.map((message, index) => (
+                  <div key={index} className={`text-sm ${message.role === 'user' ? 'text-right' : 'text-left'}`}>
+                    <span
+                      className={`inline-block rounded-lg px-3 py-1 ${
+                        message.role === 'user' ? 'bg-blue-500 text-white' : 'bg-zinc-200 dark:bg-zinc-600'
+                      }`}
+                    >
+                      <MdxContent content={message.content || ''} className="contentMDX" />
+                    </span>
+                  </div>
+                ))}
               </div>
-            </div>
-          )}
-        </div>
         <div className="mt-4 flex">
           <input
             type="text"
