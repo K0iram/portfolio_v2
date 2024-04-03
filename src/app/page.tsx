@@ -286,6 +286,12 @@ export default async function Home() {
               icon={LinkedInIcon}
             />
             <SocialLink
+              href="https://www.instagram.com/koiram"
+              target="_blank"
+              aria-label="Follow on Instagram"
+              icon={InstagramIcon}
+            />
+            <SocialLink
               href="https://x.com/k0iram"
               target="_blank"
               aria-label="Follow on X"
