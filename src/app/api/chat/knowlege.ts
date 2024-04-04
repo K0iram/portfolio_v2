@@ -56,4 +56,7 @@ Leadership at Grecophilia: Mario's exemplary management ensured that the hotel n
 Contact Information:
 You can reach out to Mario directly via:
 email: mario@sick.email
-linkedin: www.linkedin.com/in/mariokk`
+linkedin: www.linkedin.com/in/mariokk
+github: www.github.com/mariokk
+instagram: www.instagram.com/mariokk
+twitter/X: www.x.com/mariokk`

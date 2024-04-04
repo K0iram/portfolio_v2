@@ -9,12 +9,15 @@ import ReactMarkdown from 'react-markdown';
 type Message = {
   content: string | null;
   role: OpenAI.ChatCompletionMessageParam['role']
+  action?: string | null;
+  actionPayload?: { url: string } | null;
 }
+
 
 const Chat: React.FC = () => {
   const [text, setText] = useState<string>('');
   const [conversation, setConversation] = useState<Message[]>([
-    { role: 'assistant', content: `Hi! I am Mario's AI assistant. How can I help you today?` } // Initial bot message
+    { role: 'assistant', content: `Hi! I am Mario's AI assistant. How can I help you today?`} // Initial bot message
   ]);
   const [currentBotMessage, setCurrentBotMessage] = useState<string>('');
   const latestMessages = useRef<Message[]>(conversation);
@@ -23,13 +26,18 @@ const Chat: React.FC = () => {
     schema,
     onReceive: (data) => {
       if (data.content) {
-        const newMessages: Message[] = [...latestMessages.current, { role: 'assistant', content: data.content }];
+        const newMessages: Message[] = [...latestMessages.current, { role: 'assistant', content: data.content}];
         setConversation(newMessages);
       }
     },
     onEnd(data) {
       if (data) {
-        const newMessages: Message[] = [...latestMessages.current, { role: 'assistant', content: data.content }];
+        const newMessage: Message = { role: 'assistant', content: data.content};
+        if(data.action === 'shareLink') {
+          newMessage.action = data.action;
+          newMessage.actionPayload = data.actionPayload;
+        }
+        const newMessages: Message[] = [...latestMessages.current, newMessage];
         setConversation(newMessages);
         latestMessages.current = newMessages;
       }

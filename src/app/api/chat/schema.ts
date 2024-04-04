@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-const actionEnum = z.enum(["shareLink", "notifyMario"])
+const actionEnum = z.enum(["shareLink"])
 const actionPayload = z.discriminatedUnion("action", [
   z.object({ action: z.literal("shareLink"), url: z.string() })
 ]
