@@ -59,4 +59,6 @@ email: mario@sick.email
 linkedin: www.linkedin.com/in/mariokk
 github: www.github.com/mariokk
 instagram: www.instagram.com/mariokk
-twitter/X: www.x.com/mariokk`
+twitter/X: www.x.com/mariokk
+Book a meeting with Mario: https://calendly.com/mk--08hx/15min
+`;
