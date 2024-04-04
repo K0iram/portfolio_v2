@@ -26,17 +26,18 @@ const Chat: React.FC = () => {
     schema,
     onReceive: (data) => {
       if (data.content) {
-        const newMessages: Message[] = [...latestMessages.current, { role: 'assistant', content: data.content}];
+        const newMessage: Message = { role: 'assistant', content: data.content};
+        if(data.action === 'shareLink') {
+          newMessage.action = data.action;
+          newMessage.actionPayload = data.actionPayload;
+        }
+        const newMessages: Message[] = [...latestMessages.current, newMessage];
         setConversation(newMessages);
       }
     },
     onEnd(data) {
       if (data) {
         const newMessage: Message = { role: 'assistant', content: data.content};
-        if(data.action === 'shareLink') {
-          newMessage.action = data.action;
-          newMessage.actionPayload = data.actionPayload;
-        }
         const newMessages: Message[] = [...latestMessages.current, newMessage];
         setConversation(newMessages);
         latestMessages.current = newMessages;
