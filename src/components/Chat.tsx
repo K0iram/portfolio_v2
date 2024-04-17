@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useJsonStream } from 'stream-hooks';
 import { schema } from '../app/api/chat/schema';
 import ReactMarkdown from 'react-markdown';
+import { Button } from './Button';
 
 type Message = {
   content: string | null;
@@ -137,13 +138,14 @@ const Chat: React.FC = () => {
             placeholder="Type your message..."
             className="min-w-0 flex-auto appearance-none rounded-md border border-zinc-900/10 bg-white dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 dark:placeholder:text-zinc-500 focus:border-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-500/10 dark:focus:border-teal-400 dark:focus:ring-teal-400/10 sm:text-sm"
           />
-          <button
+          <Button
             type="submit"
             disabled={loading}
-            className="ml-4 flex-none bg--500 hover:bg--600 text-white rounded-md px-4 py-2 text-sm disabled:bg--300"
+            variant='secondary'
+            className="ml-4"
           >
             Send
-          </button>
+          </Button>
         </div>
       </form>
     </div>
