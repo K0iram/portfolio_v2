@@ -9,6 +9,7 @@ import logoBlueboard from '@/images/logos/blueboard.svg'
 import logoP2P from '@/images/logos/P2P.png'
 import logoWayfair from '@/images/logos/wayfair.png'
 import logoBbLounge from '@/images/logos/bb-lounge.png'
+import logoCheatCode from '@/images/logos/cheat-codes.png'
 
 const projects = [
   {
@@ -31,6 +32,13 @@ const projects = [
       'As part of the Storefront team, I helped build the Ideaboards feature. It’s a way for customers to save their favorite products and share them with friends and family. It’s a great way to keep track of products you love and get feedback from others.',
     link: { href: 'https://wayfair.com', label: 'wayfair.com' },
     logo: logoWayfair,
+  },
+  {
+    name: 'Cheat Codes Prep',
+    description:
+      'As a freelance web developer, I built the Cheat Codes Prep website. It’s a website that allows users to prepare for JavaScript interview questions.',
+    link: { href: 'https://cheat-codes.dev', label: 'cheat-codes.dev' },
+    logo: logoCheatCode,
   },
   {
     name: 'Barbershop Lounge',
