@@ -14,6 +14,7 @@ import {
 import logoBlueboard from '@/images/logos/blueboard.svg'
 import logoMKDev from '@/images/logos/mkdev.png'
 import logoWayfair from '@/images/logos/wayfair.png'
+import logoHenryMeds from '@/images/logos/henry.png'
 import image1 from '@/images/photos/image-1.png'
 import image2 from '@/images/photos/image-2.png'
 import image3 from '@/images/photos/image-3.png'
@@ -155,6 +156,13 @@ const present = {
 
 function Resume() {
   let resume: Array<Role> = [
+    {
+      company: 'Henry Meds',
+      title: 'Sr. Software Engineer',
+      logo: logoHenryMeds,
+      start: '2024',
+      end: present,
+    },
     {
       company: 'Blueboard',
       title: 'Software Engineer',
