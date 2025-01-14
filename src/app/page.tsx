@@ -194,45 +194,50 @@ function Resume() {
   }
 
   const statusTags: StatusTags = {
-    'LOOKING': {
-      color: 'bg-green-500/10 text-green-400',
+    LOOKING: {
+      color: 'bg-green-500/10 text-green-400 border border-green-500',
       label: 'Currently Interviewing',
     },
-    'OPEN': {
-      color: 'bg-blue-500/10 text-blue-400',
+    OPEN: {
+      color: 'bg-blue-500/10 text-blue-400 border border-blue-500',
       label: 'Open to New Opportunities',
     },
     '!OPEN': {
-      color: 'bg-red-500/10 text-red-400',
+      color: 'bg-red-500/10 text-red-400 border border-red-500',
       label: 'Not Looking for Work',
     },
   }
 
   const currentStatus: string = process.env.CURRENT_STATUS || 'OPEN'
-  
 
   return (
     <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
-      <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100 items-center justify-between">
-        <div className='flex'>
+      <h2 className="flex items-center justify-between text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+        <div className="flex">
           <BriefcaseIcon className="h-6 w-6 flex-none" />
           <span className="ml-3">Work</span>
         </div>
         <div>
-          <span className={`${statusTags[currentStatus].color} inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset ring-green-500/20 ml-3`}>
+          <span
+            className={`${statusTags[currentStatus].color} ml-3 inline-flex items-center rounded-md px-2 py-1 text-xs font-medium`}
+          >
             {statusTags[currentStatus].label}
           </span>
         </div>
       </h2>
-      <h3 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100 items-baseline">
-        
-      </h3>
+      <h3 className="flex items-baseline text-sm font-semibold text-zinc-900 dark:text-zinc-100"></h3>
       <ol className="mt-6 space-y-4">
         {resume.map((role, roleIndex) => (
           <Role key={roleIndex} role={role} />
         ))}
       </ol>
-      <Button href={process.env.RESUME_URL} download="Mario-Kennedy-Kavouras-Software Engineer.pdf" target="_blank" variant="secondary" className="group mt-6 w-full">
+      <Button
+        href={process.env.RESUME_URL}
+        download="Mario-Kennedy-Kavouras-Software Engineer.pdf"
+        target="_blank"
+        variant="secondary"
+        className="group mt-6 w-full"
+      >
         Download CV
         <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
       </Button>
