@@ -195,20 +195,20 @@ function Resume() {
 
   const statusTags: StatusTags = {
     LOOKING: {
-      color: 'bg-green-500/10 text-green-400 border border-green-500',
+      color: 'bg-green-500/10 text-green-400 ring-green-500/20',
       label: 'Currently Interviewing',
     },
     OPEN: {
-      color: 'bg-blue-500/10 text-blue-400 border border-blue-500',
+      color: 'bg-blue-500/10 text-blue-400 ring-blue-500/20',
       label: 'Open to New Opportunities',
     },
     '!OPEN': {
-      color: 'bg-red-500/10 text-red-400 border border-red-500',
+      color: 'bg-red-500/10 text-red-400 ring-red-500/20',
       label: 'Not Looking for Work',
     },
   }
 
-  const currentStatus: string = process.env.CURRENT_STATUS || 'OPEN'
+  const currentStatus: string = process.env.CURRENT_STATUS || '!OPEN'
 
   return (
     <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
@@ -219,7 +219,7 @@ function Resume() {
         </div>
         <div>
           <span
-            className={`${statusTags[currentStatus].color} ml-3 inline-flex items-center rounded-md px-2 py-1 text-xs font-medium`}
+            className={`${statusTags[currentStatus].color} ml-3 inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset`}
           >
             {statusTags[currentStatus].label}
           </span>
