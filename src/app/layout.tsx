@@ -12,7 +12,7 @@ export const metadata: Metadata = {
       'Mario Kavouras - Software Engineer, Chef, and all around cool dude',
   },
   description:
-    'I’m Mario, a Software Engineer based in Boston, MA.',
+    'I’m Mario, a Software Engineer based in San Diego, CA.',
   alternates: {
     types: {
       'application/rss+xml': `${process.env.NEXT_PUBLIC_SITE_URL}/feed.xml`,
