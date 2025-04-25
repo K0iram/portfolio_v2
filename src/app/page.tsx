@@ -160,30 +160,30 @@ function Resume() {
       company: 'Henry Meds',
       title: 'Sr. Software Engineer',
       logo: logoHenryMeds,
-      start: '2024',
+      start: 'June2024',
       end: present,
     },
     {
       company: 'Blueboard',
       title: 'Software Engineer',
       logo: logoBlueboard,
-      start: '2019',
-      end: '2024',
+      start: 'June 2019',
+      end: 'March 2024',
     },
     {
       company: 'MK Dev',
       title: 'Web Developer',
       logo: logoMKDev,
-      start: '2017',
-      end: '2019',
+      start: 'December 2017',
+      end: 'June 2019',
     },
     {
       company: 'Wayfair',
       title: 'Software Engineer',
       logo: logoWayfair,
-      start: '2017',
-      end: '2017',
-    }
+      start: 'August 2017',
+      end: 'December 2017',
+    },
   ]
 
   interface StatusTags {
