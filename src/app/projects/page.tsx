@@ -16,21 +16,19 @@ const projects = [
     name: 'Blueboard',
     description:
       'As part of the product engineering team, I helped build the next generation of the Blueboard platform. We used a modern tech stack to build a scalable and reliable platform that powers the employee rewards and recognition programs for some of the world’s most innovative companies.',
-    link: { href: 'http://blueboard.com', label: 'blueboard.com' },
     logo: logoBlueboard,
   },
   {
     name: 'Peer to Peer',
     description:
       'As the lead engineer, I built the P2P platform from the ground up. It’s a peer-to-peer recognition platform that allows employees to recognize each other for their hard work and dedication. It’s a great way to build a positive company culture and keep employees engaged.',
-    link: { href: 'https://p2p.blueboard.com', label: 'p2p.blueboard.com' },
     logo: logoP2P,
   },
   {
     name: 'Ideaboards',
     description:
       'As part of the Storefront team, I helped build the Ideaboards feature. It’s a way for customers to save their favorite products and share them with friends and family. It’s a great way to keep track of products you love and get feedback from others.',
-    link: { href: 'https://wayfair.com', label: 'wayfair.com' },
+    link: { href: 'https://wayfair.com/lists', label: 'wayfair.com' },
     logo: logoWayfair,
   },
   {
