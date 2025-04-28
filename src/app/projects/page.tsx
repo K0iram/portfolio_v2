@@ -4,14 +4,22 @@ import Image from 'next/image'
 import { Card } from '@/components/Card'
 import { SimpleLayout } from '@/components/SimpleLayout'
 
-import logoBooks from '@/images/logos/bookshelf.png'
 import logoBlueboard from '@/images/logos/blueboard.svg'
 import logoP2P from '@/images/logos/P2P.png'
 import logoWayfair from '@/images/logos/wayfair.png'
 import logoBbLounge from '@/images/logos/bb-lounge.png'
 import logoCheatCode from '@/images/logos/cheat-codes.png'
-
+import logoHenryMeds from '@/images/logos/henry.png'
 const projects = [
+  {
+    name: 'Henry Meds',
+    description: `As a Sr. Software engineer, I work on the Henry Meds patient portal. It's a platform that allows patients to manage their healthcare and connect with their providers. This portal is built with React and TypeScript and is a great example of how a modern healthcare platform can help engage patients and improve their overall experience.`,
+    link: {
+      href: 'https://www.henrymeds.com',
+      label: 'henrymeds.com',
+    },
+    logo: logoHenryMeds,
+  },
   {
     name: 'Blueboard',
     description:
@@ -25,13 +33,6 @@ const projects = [
     logo: logoP2P,
   },
   {
-    name: 'Ideaboards',
-    description:
-      'As part of the Storefront team, I helped build the Ideaboards feature. It’s a way for customers to save their favorite products and share them with friends and family. It’s a great way to keep track of products you love and get feedback from others.',
-    link: { href: 'https://wayfair.com/lists', label: 'wayfair.com' },
-    logo: logoWayfair,
-  },
-  {
     name: 'Cheat Codes Prep',
     description:
       'As a freelance web developer, I built the Cheat Codes Prep website. It’s a website that allows users to prepare for JavaScript interview questions.',
@@ -39,18 +40,21 @@ const projects = [
     logo: logoCheatCode,
   },
   {
+    name: 'Ideaboards',
+    description:
+      'As part of the Storefront team, I helped build the Ideaboards feature. It’s a way for customers to save their favorite products and share them with friends and family. It’s a great way to keep track of products you love and get feedback from others.',
+    link: { href: 'https://wayfair.com/lists', label: 'wayfair.com' },
+    logo: logoWayfair,
+  },
+  {
     name: 'Barbershop Lounge',
     description:
       'As a freelance web developer, I built the Barbershop Lounge website. It’s a modern and stylish website that showcases the barbershop’s services and allows customers to book appointments online.',
-    link: { href: 'https://barbershoplounge.com', label: 'barbershoplounge.com' },
+    link: {
+      href: 'https://barbershoplounge.com',
+      label: 'barbershoplounge.com',
+    },
     logo: logoBbLounge,
-  },
-  {
-    name: 'My Reads',
-    description:
-      `As the final project for the Udacity React Nanodegree, I built the My Reads app. It’s a bookshelf app that allows you to select and categorize books you have read, are currently reading, or want to read. It's a great example of how to leverage modern React and Redux.`,
-    link: { href: 'https://github.com/K0iram/myreads-app', label: 'github.com' },
-    logo: logoBooks,
   },
 ]
 
@@ -91,13 +95,21 @@ export default function Projects() {
               />
             </div>
             <h2 className="mt-6 text-base font-semibold text-zinc-800 dark:text-zinc-100">
-              <Card.Link href={project.link.href} target="_blank">{project.name}</Card.Link>
+              {project.link ? (
+                <Card.Link href={project.link.href} target="_blank">
+                  {project.name}
+                </Card.Link>
+              ) : (
+                project.name
+              )}
             </h2>
             <Card.Description>{project.description}</Card.Description>
-            <p className="relative z-10 mt-6 flex text-sm font-medium text-zinc-400 transition group-hover:text-teal-500 dark:text-zinc-200">
-              <LinkIcon className="h-6 w-6 flex-none" />
-              <span className="ml-2">{project.link.label}</span>
-            </p>
+            {project.link && (
+              <p className="relative z-10 mt-6 flex text-sm font-medium text-zinc-400 transition group-hover:text-teal-500 dark:text-zinc-200">
+                <LinkIcon className="h-6 w-6 flex-none" />
+                <span className="ml-2">{project.link.label}</span>
+              </p>
+            )}
           </Card>
         ))}
       </ul>
