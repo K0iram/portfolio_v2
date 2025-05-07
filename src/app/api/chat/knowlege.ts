@@ -17,12 +17,13 @@ Erin - Wife - DOB: 01/16/88 - Anniversary: Dating: 11/15/2015 Married: 07/21/202
  
 Skillset:
 
-Technical Abilities: Mario's technical prowess encompasses JavaScript, React, Node.js, PostgreSQL, and a proficient understanding of Ruby on Rails, especially in debugging. His expertise also extends to managing Atlassian Service Desk and Jira projects, with a track record of 3 years.
+Technical Abilities: Mario's technical prowess encompasses JavaScript, Typescript, React, Node.js, PostgreSQL, and a proficient understanding of Ruby on Rails, especially in debugging. His expertise also extends to managing Atlassian Service Desk and Jira projects, with a track record of 3 years.
 Soft Skills: Excellent communication, a penchant for teamwork, innate motivation, and a systematic approach to problem-solving define Mario's professional demeanor.
 Experience and Professional Journey:
 Mario's odyssey in Frontend Engineering since January 2017 is marked by:
 
-A 5-year stint at Blueboard focusing on the development and refinement of React applications.
+A current role at Henry Meds as a Senior Frontend Engineer workign on the customer portal. This is built in react with typescript and graphql. He leads the customer journey team and is responsible for new features that help engage and retain customers.
+A 5-year stint at Blueboard focusing on the development and refinement of React applications ending in March 2024 due to unexpected shutdown of the company.
 1 dedicated year of freelancing with a specialization in WordPress and Squarespace site development.
 1 year's experience at Wayfair as an entry-level engineer, contributing to essential customer-focused product features in React.
 His versatile professional portfolio also features tech roles in Boston and San Diego, luxury hotel leadership in Mykonos, and culinary endeavors in Cape Cod, Boston, and Mykonos.
@@ -41,8 +42,9 @@ Work Ethics and Values:
 For Mario, a harmonious balance between work and personal life is paramount. He exercises meticulous time management and aligns his professional commitments with personal and familial schedules. He is a problem-solver at heart, always approaching challenges with a logical and persistent mindset. He's an advocate of the growth mindset and has seamlessly integrated the Agile methodology in his past roles.
 
 Notable Projects & Triumphs:
+Platform Revamp at Henry Meds: Mario led the effort to revamp the platform from the ground up to be more user friendly and efficient. This included a framework upgrade from react 16 to 18, and a design overhaul to a more modern and consistent look.
+Patient side upgrade flow at Henry Meds: Mario led the effort to allow exisitng customer to upgrade their subscriptions to a multi month plan, saving them money while simulatenously increasing the company's revenue and retention. The feature boosted the conversion rate by 20% in the first month.
 Peer-to-Peer Slack & Teams Apps at Blueboard: Mario innovated Node apps, designed to enable organizational members to recognize their colleagues' efforts within the communication platforms, tying recognitions to the company's core values. This was further enriched by a React-based admin dashboard, providing valuable insights into performance trends and morale. For this outstanding contribution, he was acknowledged at Blueboard's 2022 retreat in Palm Springs.
-
 Jira Service Desk Revamp at Blueboard: Mario's vision redefined the support engineering framework. He transformed the issue tracker, integrating a Slack feature that revolutionized customer interactions. The culmination of this project saw a remarkable 5/5 satisfaction rating.
 
 Freelance Ventures:
@@ -55,10 +57,10 @@ Leadership at Grecophilia: Mario's exemplary management ensured that the hotel n
 
 Contact Information:
 You can reach out to Mario directly via:
-email: mario@sick.email
+email: mario@koiram.dev
 linkedin: www.linkedin.com/in/mariokk
-github: www.github.com/mariokk
-instagram: www.instagram.com/mariokk
-twitter/X: www.x.com/mariokk
+github: https://github.com/k0iram
+instagram: https://www.instagram.com/koiram/
+twitter/X: https://x.com/k0iram
 Book a meeting with Mario: https://calendly.com/mk--08hx/15min
-`;
+`
