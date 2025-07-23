@@ -106,20 +106,38 @@ function SocialLink({
 
 interface Role {
   company: string
-  title: string
+  role1: {
+    title: string
+    start: string | { label: string; dateTime: string }
+    end: string | { label: string; dateTime: string }
+  }
+  role2?: {
+    title: string
+    start: string | { label: string; dateTime: string }
+    end: string | { label: string; dateTime: string }
+  }
   logo: ImageProps['src']
-  start: string | { label: string; dateTime: string }
-  end: string | { label: string; dateTime: string }
 }
 
 function Role({ role }: { role: Role }) {
+  const role1 = role.role1
   let startLabel =
-    typeof role.start === 'string' ? role.start : role.start.label
+    typeof role1.start === 'string' ? role1.start : role1.start.label
   let startDate =
-    typeof role.start === 'string' ? role.start : role.start.dateTime
+    typeof role1.start === 'string' ? role1.start : role1.start.dateTime
 
-  let endLabel = typeof role.end === 'string' ? role.end : role.end.label
-  let endDate = typeof role.end === 'string' ? role.end : role.end.dateTime
+  let endLabel = typeof role1.end === 'string' ? role1.end : role1.end.label
+  let endDate = typeof role1.end === 'string' ? role1.end : role1.end.dateTime
+
+  const role2 = role.role2
+  let startLabel2 =
+    typeof role2?.start === 'string' ? role2?.start : role2?.start.label
+  let startDate2 =
+    typeof role2?.start === 'string' ? role2?.start : role2?.start.dateTime
+
+  let endLabel2 = typeof role2?.end === 'string' ? role2?.end : role2?.end.label
+  let endDate2 =
+    typeof role2?.end === 'string' ? role2?.end : role2?.end.dateTime
 
   return (
     <li className="flex gap-4">
@@ -132,18 +150,41 @@ function Role({ role }: { role: Role }) {
           {role.company}
         </dd>
         <dt className="sr-only">Role</dt>
-        <dd className="text-xs text-zinc-500 dark:text-zinc-400">
-          {role.title}
-        </dd>
-        <dt className="sr-only">Date</dt>
-        <dd
-          className="ml-auto text-xs text-zinc-400 dark:text-zinc-500"
-          aria-label={`${startLabel} until ${endLabel}`}
-        >
-          <time dateTime={startDate}>{startLabel}</time>{' '}
-          <span aria-hidden="true">—</span>{' '}
-          <time dateTime={endDate}>{endLabel}</time>
-        </dd>
+        {role2 && (
+          <div className="flex w-full justify-between">
+            <dt className="sr-only">Role</dt>
+            <dd className="text-xs text-zinc-500 dark:text-zinc-400">
+              {role2.title}
+            </dd>
+            <div className="text-left">
+              <dt className="sr-only">Date</dt>
+              <dd
+                className="text-xs text-zinc-400 dark:text-zinc-500"
+                aria-label={`${startLabel2} until ${endLabel2}`}
+              >
+                <time dateTime={startDate2}>{startLabel2}</time>{' '}
+                <span aria-hidden="true">—</span>{' '}
+                <time dateTime={endDate2}>{endLabel2}</time>
+              </dd>
+            </div>
+          </div>
+        )}
+        <div className="flex w-full justify-between">
+          <dd className="text-xs text-zinc-500 dark:text-zinc-400">
+            {role1.title}
+          </dd>
+          <div className="text-left">
+            <dt className="sr-only">Date</dt>
+            <dd
+              className="text-xs text-zinc-400 dark:text-zinc-500"
+              aria-label={`${startLabel} until ${endLabel}`}
+            >
+              <time dateTime={startDate}>{startLabel}</time>{' '}
+              <span aria-hidden="true">—</span>{' '}
+              <time dateTime={endDate}>{endLabel}</time>
+            </dd>
+          </div>
+        </div>
       </dl>
     </li>
   )
@@ -158,39 +199,52 @@ function Resume() {
   let resume: Array<Role> = [
     {
       company: 'Henry Meds',
-      title: 'Sr. Software Engineer',
+      role1: {
+        title: 'Sr. Software Engineer',
+        start: 'Jun 2024',
+        end: 'Jun 2025',
+      },
+      role2: {
+        title: 'Engineering Manager',
+        start: 'Jun 2025',
+        end: present,
+      },
       logo: logoHenryMeds,
-      start: 'Jun 2024',
-      end: present,
     },
     {
       company: 'Blueboard',
-      title: 'Software Engineer',
+      role1: {
+        title: 'Software Engineer',
+        start: 'Jun 2019',
+        end: 'Mar 2024',
+      },
       logo: logoBlueboard,
-      start: 'Jun 2019',
-      end: 'Mar 2024',
     },
     {
       company: 'MK Dev',
-      title: 'Web Developer',
+      role1: {
+        title: 'Web Developer',
+        start: 'Dec 2017',
+        end: 'Jun 2019',
+      },
       logo: logoMKDev,
-      start: 'Dec 2017',
-      end: 'Jun 2019',
     },
     {
       company: 'Wayfair',
-      title: 'Software Engineer',
+      role1: {
+        title: 'Software Engineer',
+        start: 'Aug 2017',
+        end: 'Dec 2017',
+      },
       logo: logoWayfair,
-      start: 'Aug 2017',
-      end: 'Dec 2017',
     },
   ]
 
   interface StatusTags {
     [key: string]: {
-      color: string;
-      label: string;
-    };
+      color: string
+      label: string
+    }
   }
 
   const statusTags: StatusTags = {
@@ -279,8 +333,9 @@ export default async function Home() {
     <>
       <Container className="mt-9">
         <div className="max-w-2xl">
-          <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl h-[115px]">
-            Software Engineer, Chef, <TypingAnimation variations={homeTextVariations} />
+          <h1 className="h-[115px] text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
+            Software Engineer, Chef,{' '}
+            <TypingAnimation variations={homeTextVariations} />
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
             I’m Mario, a Software Engineer based in San Diego, CA.
@@ -317,10 +372,12 @@ export default async function Home() {
       <Container className="mt-24 md:mt-28">
         <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2 lg:gap-x-8 xl:gap-x-24">
           <div className="lg:col-span-2">
-          <h2 className="text-2xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-3xl">
-            Ask Me Anything
-          </h2>
-          <h5 className='pb-4'>Have questions about me? Ask my AI bot anything you want to know!</h5>
+            <h2 className="text-2xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-3xl">
+              Ask Me Anything
+            </h2>
+            <h5 className="pb-4">
+              Have questions about me? Ask my AI bot anything you want to know!
+            </h5>
             <Chat />
           </div>
           <div className="flex flex-col gap-16">
@@ -330,12 +387,16 @@ export default async function Home() {
             {articles.map((article) => (
               <Article key={article.slug} article={article} />
             ))}
-            <Link href="/articles" passHref className="flex items-center text-sm font-medium text-teal-500">
-                View all articles
-                <ChevronRightIcon className="ml-1 h-4 w-4 stroke-current" />
+            <Link
+              href="/articles"
+              passHref
+              className="flex items-center text-sm font-medium text-teal-500"
+            >
+              View all articles
+              <ChevronRightIcon className="ml-1 h-4 w-4 stroke-current" />
             </Link>
           </div>
-          <div className="space-y-10 lg:pl-16 xl:pl-24">
+          <div className="space-y-10">
             <Resume />
             <Newsletter />
           </div>
@@ -343,5 +404,4 @@ export default async function Home() {
       </Container>
     </>
   )
-
 }
